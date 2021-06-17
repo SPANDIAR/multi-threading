@@ -13,6 +13,8 @@ public class FileDownloader implements Runnable{
 	@Override
 	public void run() {
 		for(int i=1; i<=10_000L; i++) {
+			if(Thread.currentThread().isInterrupted()) 
+				return;
 			tracker.incrementTotalDownloadedBytes();
 		}
 	}
