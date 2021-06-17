@@ -1,21 +1,22 @@
 package com.spandiar.multithreading.main;
 
+import java.util.concurrent.atomic.AtomicLong;
 
 public class DownloadStatus {
 	
-	private long totalDownloadedBytes;
+	private AtomicLong totalDownloadedBytes = new AtomicLong();
 
 	public DownloadStatus() {
 		super();
-		this.totalDownloadedBytes = 0;
+		this.totalDownloadedBytes.set(0L);;
 	}
 
 	public long getTotalDownloadedBytes() {
-		return this.totalDownloadedBytes;
+		return this.totalDownloadedBytes.longValue();
 	}
 
-	public synchronized void incrementTotalDownloadedBytes() {
-		this.totalDownloadedBytes++;
+	public void incrementTotalDownloadedBytes() {
+		this.totalDownloadedBytes.incrementAndGet();
 	}
 	
 }
